@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import { ALL_QUESTIONS } from './component/question';
 
-const socket = io('http://localhost:10000');
+// 💡 เช็กว่าใช้คำสั่งดึงค่าจาก env แบบนี้แล้วหรือยัง
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:10000';
+const socket = io(BACKEND_URL);
 
 export default function App() {
   const [gameMode, setGameMode] = useState(null); 

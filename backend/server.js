@@ -1,7 +1,30 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const cors = require('cors');
+import express from 'express';
+import http from 'http';
+import { Server } from 'socket.io';
+import cors from 'cors';
+
+const app = express();
+
+// ส่วนที่เหลือต่ำกว่านี้ใช้โค้ดเดิมได้ทั้งหมดเลยครับ ตัวอย่างเช่น:
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "*", 
+  methods: ["GET", "POST"]
+}));
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL || "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+// ... โค้ดระบบห้องเกมส์และ socket.on ต่างๆ ...
+
+const PORT = process.env.PORT || 10000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 const app = express();
 
