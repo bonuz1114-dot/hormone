@@ -5,30 +5,7 @@ import cors from 'cors';
 
 const app = express();
 
-// ส่วนที่เหลือต่ำกว่านี้ใช้โค้ดเดิมได้ทั้งหมดเลยครับ ตัวอย่างเช่น:
-app.use(cors({
-  origin: process.env.FRONTEND_URL || "*", 
-  methods: ["GET", "POST"]
-}));
-
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: process.env.FRONTEND_URL || "*",
-    methods: ["GET", "POST"]
-  }
-});
-
-// ... โค้ดระบบห้องเกมส์และ socket.on ต่างๆ ...
-
-const PORT = process.env.PORT || 10000;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-const app = express();
-
-// 💡 1. ปรับ CORS ให้รองรับ URL ของ Frontend ที่กำลังจะสร้าง (หรือใส่ '*' ในช่วงทดสอบ)
+// 💡 1. ปรับ CORS ให้รองรับ URL ของ Frontend และทำงานบนระบบจริง
 app.use(cors({
   origin: process.env.FRONTEND_URL || "*", 
   methods: ["GET", "POST"]
@@ -43,8 +20,7 @@ const io = new Server(server, {
   }
 });
 
-// 💾 ----------------- [เริ่มส่วนที่เพิ่มเข้าไป] -----------------
-// โครงสร้างข้อมูลสำหรับเก็บสถานะห้องเกมใน Memory
+// 💾 โครงสร้างข้อมูลสำหรับเก็บสถานะห้องเกมใน Memory
 const rooms = {}; 
 
 io.on('connection', (socket) => {
@@ -169,7 +145,6 @@ io.on('connection', (socket) => {
     }
   });
 });
-// 💾 ----------------- [สิ้นสุดส่วนที่เพิ่มเข้าไป] -----------------
 
 // 💡 2. เปลี่ยนให้ใช้พอร์ตจาก Environment Variable ที่ Cloud กำหนดมาให้
 const PORT = process.env.PORT || 10000;
