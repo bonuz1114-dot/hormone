@@ -1,3 +1,5 @@
+// 0 = ตัวเลือก 1, 1 = ตัวเลือก 2, 2 = ตัวเลือก 3, 3 = ตัวเลือก 4
+
 export const ALL_QUESTIONS = [
   {
     "id": 1,
@@ -122,7 +124,7 @@ export const ALL_QUESTIONS = [
   {
     "id": 21,
     "question": "ฮอร์โมนเพศชายที่สำคัญที่สุด ซึ่งทำหน้าที่ควบคุมลักษณะความเป็นชายคือฮอร์โมนใด?",
-    "options": ["Testoterone", "Estrogen", "Progesterone", "hCG"],
+    "options": ["Testosterone", "Estrogen", "Progesterone", "hCG"],
     "answer": 0
   },
   {
