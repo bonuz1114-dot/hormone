@@ -7,15 +7,16 @@ const app = express();
 
 // 💡 1. ปรับ CORS ให้รองรับ URL ของ Frontend และทำงานบนระบบจริง
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "*", 
+  origin: "*", 
   methods: ["GET", "POST"]
 }));
 
 const server = http.createServer(app);
 
+// 💡 2. ปรับ CORS Socket.io ให้เปิดรับทุก Origin ชัดเจน
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "*",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
